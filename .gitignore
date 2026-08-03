@@ -1,0 +1,23 @@
+# Guile compiled bytecode
+*.go
+
+# Coverage and local build output
+.coverage/
+coverage/
+dist/
+build/
+
+# Guile and editor caches
+.cache/
+.guile
+
+# Logs and local configuration
+*.log
+*.tmp
+Makefile.local
+
+# Editor and operating system noise
+*.swp
+*~
+.DS_Store
+Thumbs.db

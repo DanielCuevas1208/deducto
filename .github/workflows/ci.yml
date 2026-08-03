@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Install Guile
+        run: |
+          sudo apt-get update
+          sudo apt-get install --no-install-recommends --yes guile-3.0
+
+      - name: Run SRFI-64 tests
+        run: guile -L src tests/run-tests.scm
+
+      - name: Check the sample proof
+        run: guile -L src src/main.scm check proofs/valid/implication.scm
+
+      - name: Check the hint command
+        run: guile -L src src/main.scm hint proofs/valid/implication.scm '(and P Q)'
