@@ -139,6 +139,7 @@
   (test-assert "REPL reports an invalid line immediately"
                (string-contains (get-output-string output) "repeat")))
 
+(define completed-runner (test-runner-current))
 (test-end "deducto")
 
-(exit (if (zero? (test-runner-fail-count (test-runner-current))) 0 1))
+(exit (if (zero? (test-runner-fail-count completed-runner)) 0 1))
