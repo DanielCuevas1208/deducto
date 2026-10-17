@@ -416,7 +416,7 @@
                            (fail "exists-elim must conclude the subproof result."))
                           (else (values))))))))
             (else
-             (fail (format #f "Unknown rule ~a." rule)))))
+             (fail (format #f "Unknown rule ~a." rule))))))
 
         (catch 'deducto-step-fail
           (lambda ()
@@ -436,7 +436,7 @@
             (rule-check)
             (make-step-result idx #t #f))
           (lambda (key message)
-            (make-step-result idx #f message)))))))
+            (make-step-result idx #f message))))))
 
 (define (global-failure lines spans)
   (define number (length lines))
