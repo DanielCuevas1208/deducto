@@ -1,6 +1,7 @@
 ;;;; run-tests.scm --- Deterministic SRFI-64 tests for Deducto
 
-(use-modules (srfi srfi-13)
+(use-modules (srfi srfi-11)
+             (srfi srfi-13)
              (srfi srfi-64)
              (deducto formulas)
              (deducto proof)
