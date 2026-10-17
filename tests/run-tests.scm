@@ -1,6 +1,7 @@
 ;;;; run-tests.scm --- Deterministic SRFI-64 tests for Deducto
 
-(use-modules (srfi srfi-13)
+(use-modules (srfi srfi-11)
+             (srfi srfi-13)
              (srfi srfi-64)
              (deducto formulas)
              (deducto proof)
@@ -138,6 +139,7 @@
   (test-assert "REPL reports an invalid line immediately"
                (string-contains (get-output-string output) "repeat")))
 
+(define completed-runner (test-runner-current))
 (test-end "deducto")
 
-(exit (if (zero? (test-runner-fail-count (test-runner-current))) 0 1))
+(exit (if (zero? (test-runner-fail-count completed-runner)) 0 1))

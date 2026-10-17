@@ -283,7 +283,7 @@
 
   (let loop ()
     (display (prompt) output-port)
-    (flush-output-port output-port)
+    (force-output output-port)
     (let ((expression (read input-port)))
       (cond
        ((eof-object? expression)

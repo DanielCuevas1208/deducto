@@ -1,9 +1,10 @@
 (proof
-  (Q premise)
+  ((if P Q) premise)
+  ((if Q P) premise)
   (subproof
     (P premise)
-    (Q repeat 1))
+    (Q imp-elim 1 3))
   (subproof
     (Q premise)
-    (P repeat 1))
-  ((iff P Q) iff-intro (2 . 3) (4 . 5)))
+    (P imp-elim 2 5))
+  ((iff P Q) iff-intro (3 . 4) (5 . 6)))

@@ -47,6 +47,7 @@
       (let-values (((lines spans) (load-proof-file file)))
         (action lines spans)))
     (lambda (key . args)
+      (when (eq? key 'quit) (apply throw key args))
       (display "Cannot read that proof: ")
       (display args)
       (newline)

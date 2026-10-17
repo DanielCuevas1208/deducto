@@ -342,7 +342,7 @@
                            (fail (format #f
                                          "forall-intro needs ~a to be fresh."
                                          arbitrary)))
-                          (else (values)))))))
+                          (else (values))))))))
             ((forall-elim)
              (let* ((source (line-ref 0))
                     (term (term-ref 1))
@@ -436,7 +436,7 @@
             (rule-check)
             (make-step-result idx #t #f))
           (lambda (key message)
-            (make-step-result idx #f message)))))))
+            (make-step-result idx #f message))))))
 
 (define (global-failure lines spans)
   (define number (length lines))

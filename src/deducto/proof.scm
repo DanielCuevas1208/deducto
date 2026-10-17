@@ -131,19 +131,20 @@
 
 ;;; Round trip back to the DSL ------------------------------------
 
-(define (span-starting-at spans number)
-  (find (lambda (span) (= (span-start span) number)) spans))
+(define (span-starting-at candidates number)
+  (find (lambda (span) (= (span-start span) number)) candidates))
 
 (define (proof->spec lines spans)
-  (define (spec-for from to)
+  (define (spec-for from to candidates)
     (let loop ((number from) (items '()))
       (if (> number to)
           (reverse items)
-          (let ((span (span-starting-at spans number)))
+          (let ((span (span-starting-at candidates number)))
             (if span
                 (loop (+ (span-end span) 1)
                       (cons (cons 'subproof
-                                  (spec-for number (span-end span)))
+                                  (spec-for number (span-end span)
+                                            (remove (lambda (candidate) (equal? candidate span)) candidates)))
                             items))
                 (let ((line (list-ref lines (- number 1))))
                   (loop (+ number 1)
@@ -151,4 +152,5 @@
                                             (line-rule line))
                                       (line-refs line))
                               items))))))))
-  (cons 'proof (spec-for 1 (length lines))))
+  (cons 'proof (spec-for 1 (length lines)
+                         (sort spans (lambda (a b) (> (span-end a) (span-end b)))))))

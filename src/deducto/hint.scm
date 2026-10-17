@@ -118,7 +118,7 @@
                                 (eq? (car formula) 'if)
                                 (equal? (caddr formula) goal)
                                 (find-line-with lines (cadr formula)))))
-                       (available-formulas lines)))
+                       (available-formulas lines))))
             (cond
              (implication
               (let ((antecedent
@@ -181,7 +181,7 @@
              (else
               (list (format #f
                             "No obvious step. Try assuming (not ~a)."
-                            (formula->string goal))))))))))))
+                            (formula->string goal)))))))))))
 
 (define (hint-for lines spans goal)
   (let ((suggestions (suggestions-for lines spans goal)))
