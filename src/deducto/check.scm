@@ -342,7 +342,7 @@
                            (fail (format #f
                                          "forall-intro needs ~a to be fresh."
                                          arbitrary)))
-                          (else (values)))))))
+                          (else (values))))))))
             ((forall-elim)
              (let* ((source (line-ref 0))
                     (term (term-ref 1))
@@ -416,7 +416,7 @@
                            (fail "exists-elim must conclude the subproof result."))
                           (else (values))))))))
             (else
-             (fail (format #f "Unknown rule ~a." rule))))))
+             (fail (format #f "Unknown rule ~a." rule)))))
 
         (catch 'deducto-step-fail
           (lambda ()
